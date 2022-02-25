@@ -16,9 +16,13 @@ function Post(props) {
 
 
     const postItems = posts.map(post => (
-        <div key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
+        <div
+            key={post.id}
+            className={'card p-2 mb-2'}>
+            <div className="card-body">
+                <h4 className={'card-title'}>{post.title}</h4>
+                <p className={'card-text'}>{post.body}</p>
+            </div>
         </div>
     ))
 
