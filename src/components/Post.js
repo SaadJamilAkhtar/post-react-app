@@ -1,21 +1,19 @@
 import React from 'react';
-import {useEffect, useState} from "react";
+import {connect} from "react-redux";
+import {FETCH_POSTS} from "../actions/types";
+import {fetchPosts} from "../actions/postAction";
+import {useEffect} from "react";
+import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
 function Post(props) {
 
-    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const loadData = async () => {
-            const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-            const data = await res.json()
-            return data
-        }
-        loadData().then(data => setPosts(data));
+        props.fetchPosts()
     }, [])
 
 
-    const postItems = posts.map(post => (
+    const postItems = props.posts.map(post => (
         <div
             key={post.id}
             className={'card p-2 mb-2'}>
@@ -35,4 +33,8 @@ function Post(props) {
     );
 }
 
-export default Post;
+const mapStateToProps_ = state => ({
+    posts: state.posts.items
+})
+
+export default connect(mapStateToProps_, {fetchPosts})(Post);
