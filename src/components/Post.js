@@ -1,19 +1,22 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {FETCH_POSTS} from "../actions/types";
 import {fetchPosts} from "../actions/postAction";
 import {useEffect} from "react";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import {useSelector, useDispatch} from "react-redux";
+import rootReducer from "../reducers";
 
 function Post(props) {
 
 
+    const dispatch = useDispatch();
+    const posts = useSelector(state => state.posts.items)
+
     useEffect(() => {
-        props.fetchPosts()
+        dispatch(fetchPosts())
     }, [])
 
 
-    const postItems = props.posts.map(post => (
+    const postItems = posts ? posts.map(post => (
         <div
             key={post.id}
             className={'card p-2 mb-2'}>
@@ -22,7 +25,7 @@ function Post(props) {
                 <p className={'card-text'}>{post.body}</p>
             </div>
         </div>
-    ))
+    )) : [];
 
     return (
         <div>
