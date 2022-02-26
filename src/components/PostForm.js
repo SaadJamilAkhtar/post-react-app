@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {createPost} from "../actions/postAction";
 
 function PostForm(props) {
+
+    const dispatch = useDispatch();
+    const newPost = useSelector(state => state.posts.item)
+    const posts = useSelector(state => state.posts.items)
+
+    useEffect(() => {
+        newPost && posts.unshift(newPost);
+    }, [newPost])
 
     const [formData, setFormData] = useState({
         title: '',
@@ -22,15 +32,7 @@ function PostForm(props) {
             body: formData.body
         }
 
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
+        dispatch(createPost(post))
     }
 
     return (
