@@ -13,14 +13,14 @@ function Post(props) {
 
     // get data on load
     useEffect(() => {
+        console.log("hello")
         dispatch(fetchPosts())
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
-        console.log("JANIIII")
-        setPostItems(posts ? posts.map(post => (
+        setPostItems(posts ? posts.map((post,index) => (
             <div
-                key={post.id}
+                key={index}
                 className={'card p-2 mb-2'}>
                 <div className="card-body">
                     <h4 className={'card-title'}>{post.title}</h4>

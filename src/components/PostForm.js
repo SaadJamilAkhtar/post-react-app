@@ -33,6 +33,11 @@ function PostForm(props) {
         }
 
         dispatch(createPost(post))
+
+        setFormData({
+            title: '',
+            body: ''
+        })
     }
 
     return (
