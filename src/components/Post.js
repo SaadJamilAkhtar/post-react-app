@@ -13,7 +13,6 @@ function Post(props) {
 
     // get data on load
     useEffect(() => {
-        console.log("hello")
         dispatch(fetchPosts())
     }, [dispatch])
 
