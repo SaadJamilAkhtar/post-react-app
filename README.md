@@ -12,3 +12,6 @@ ___
 > npm start
 
 The server will start at port 3000
+
+# Images
+![IMG](https://github.com/SaadJamilAkhtar/Project-Images/blob/master/redux-post1.png?raw=true)
