@@ -6,12 +6,6 @@ import {createPost} from "../actions/postAction";
 function PostForm(props) {
 
     const dispatch = useDispatch();
-    const newPost = useSelector(state => state.posts.item)
-    const posts = useSelector(state => state.posts.items)
-
-    useEffect(() => {
-        newPost && posts.unshift(newPost);
-    }, [newPost])
 
     const [formData, setFormData] = useState({
         title: '',
